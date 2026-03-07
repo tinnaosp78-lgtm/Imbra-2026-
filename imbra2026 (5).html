@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imbra 2026 — Skráning</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue:#0033A0;--blue-dark:#00247A;--blue-pale:#E6ECF8;
+  --orange:#FF6B00;--orange-dark:#D45700;--orange-pale:#FFF0E6;
+  --yellow:#F5C400;--yellow-dark:#C9A000;--yellow-pale:#FFFAE0;
+  --white:#FFFFFF;--off:#F4F6FB;--border:#DDE3F0;
+  --text:#0A1A3A;--muted:#6B7A99;
+  --red:#D32F2F;--red-pale:#FDECEA;
+  --green:#2E7D32;--green-pale:#E8F5E9;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);min-height:100vh;}
+.view{display:none;}.view.active{display:block;min-height:100vh;}
+
+.home{min-height:100vh;background:var(--blue);display:flex;align-items:center;justify-content:center;padding:24px;}
+.home-inner{background:var(--white);border-radius:6px;padding:48px 40px;text-align:center;max-width:520px;width:100%;position:relative;overflow:hidden;}
+.home-inner::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;background:var(--orange);}
+.home-inner::after{content:'';position:absolute;bottom:0;left:0;right:0;height:6px;background:var(--orange);}
+
+.home-tag{font-size:0.72rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--blue);margin-bottom:12px;}
+.home h1{font-family:'Bebas Neue',sans-serif;font-size:5rem;color:var(--blue);letter-spacing:4px;line-height:1;margin-bottom:4px;}
+.home h1 em{color:var(--orange);font-style:normal;}
+.home .subtitle{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--yellow);letter-spacing:4px;margin-bottom:8px;}
+.home .date-info{color:var(--muted);font-size:0.95rem;margin-bottom:40px;}
+.home-cards{display:flex;flex-direction:column;gap:10px;width:100%;}
+.home-card{display:flex;align-items:center;gap:16px;background:var(--white);border:2px solid var(--border);border-radius:4px;padding:16px 20px;cursor:pointer;transition:all 0.15s;text-align:left;width:100%;font-family:'DM Sans',sans-serif;color:var(--text);}
+.home-card:hover{border-color:var(--orange);background:var(--orange-pale);transform:translateY(-1px);}
+.home-card .hc-icon{font-size:26px;flex-shrink:0;}
+.home-card .hc-title{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:1.5px;margin-bottom:1px;color:var(--blue);}
+.home-card .hc-desc{font-size:0.78rem;color:var(--muted);}
+.home-card .hc-arrow{margin-left:auto;color:var(--orange);font-size:20px;font-weight:700;}
+
+.page{min-height:100vh;background:var(--off);}
+.page-top{background:var(--blue);padding:24px 48px;border-bottom:5px solid var(--orange);display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.page-top .ptag{font-size:0.72rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:4px;}
+.page-top h2{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--white);letter-spacing:3px;line-height:1;}
+.page-inner{max-width:640px;margin:0 auto;padding:28px 16px 48px;}
+.back-btn{background:none;border:none;color:var(--orange);font-weight:700;font-size:0.85rem;cursor:pointer;font-family:'DM Sans',sans-serif;padding:0;margin-bottom:20px;letter-spacing:0.5px;}
+.back-btn:hover{text-decoration:underline;}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--blue);letter-spacing:2px;margin-bottom:4px;}
+.section-desc{color:var(--muted);font-size:0.85rem;margin-bottom:24px;}
+
+.text-input{width:100%;padding:12px 16px;background:var(--white);border:1px solid var(--border);border-radius:3px;color:var(--text);font-size:0.95rem;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.15s;}
+.text-input::placeholder{color:var(--muted);}
+.text-input:focus{border-color:var(--orange);}
+.btn{border:none;border-radius:3px;padding:11px 24px;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.15s;font-family:'DM Sans',sans-serif;letter-spacing:0.5px;}
+.btn-orange{background:var(--orange);color:var(--white);}
+.btn-orange:hover{background:var(--orange-dark);}
+.btn-orange:disabled{background:var(--border);color:var(--muted);cursor:not-allowed;}
+.btn-blue{background:var(--blue);color:var(--white);}
+.btn-blue:hover{background:var(--blue-dark);}
+.btn-ghost{background:var(--white);color:var(--blue);border:1px solid var(--border);}
+.btn-ghost:hover{background:var(--blue-pale);}
+
+.slot-hdr{display:flex;align-items:stretch;margin-bottom:14px;border-radius:3px;overflow:hidden;}
+.slot-accent{width:6px;flex-shrink:0;}
+.slot-accent.blue{background:var(--blue);}.slot-accent.orange{background:var(--orange);}.slot-accent.yellow{background:var(--yellow);}
+.slot-label{padding:10px 20px;flex:1;}
+.slot-label.blue{background:var(--blue);}.slot-label.orange{background:var(--orange);}.slot-label.yellow{background:var(--yellow);}
+.slot-label h4{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:2px;}
+.slot-label.blue h4{color:var(--white);}.slot-label.orange h4{color:var(--white);}.slot-label.yellow h4{color:var(--blue-dark);}
+.slot-label p{font-size:0.72rem;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;margin-top:1px;}
+.slot-label.blue p{color:rgba(255,255,255,0.65);}.slot-label.orange p{color:rgba(255,255,255,0.7);}.slot-label.yellow p{color:rgba(0,36,122,0.55);}
+
+.slot-hdr-mandatory{background:var(--yellow);border-left:6px solid var(--orange);border-radius:3px;padding:10px 20px;margin-bottom:14px;}
+.slot-hdr-mandatory h4{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:2px;color:var(--blue-dark);}
+.slot-hdr-mandatory p{font-size:0.72rem;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:rgba(0,36,122,0.55);margin-top:1px;}
+
+.act-opt{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--white);border:1px solid var(--border);border-radius:3px;margin-bottom:8px;cursor:pointer;transition:all 0.15s;text-align:left;width:100%;font-family:'DM Sans',sans-serif;color:var(--text);}
+.act-opt:hover:not(.act-full):not(.act-disabled){border-color:var(--orange);background:var(--orange-pale);}
+.act-opt.act-selected{border-color:var(--orange);background:var(--orange-pale);border-left:4px solid var(--orange);}
+.act-opt.act-full{opacity:0.4;cursor:not-allowed;}
+.act-opt.act-disabled{opacity:0.3;cursor:not-allowed;background:var(--off);}
+.radio-c{width:20px;height:20px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.act-selected .radio-c{border-color:var(--orange);}
+.radio-d{width:10px;height:10px;border-radius:50%;background:var(--orange);display:none;}
+.act-selected .radio-d{display:block;}
+.act-name{font-weight:600;font-size:0.9rem;color:var(--text);}
+.act-loc{font-size:0.75rem;color:var(--muted);margin-top:2px;}
+.full-tag{display:inline-block;margin-left:8px;background:var(--red-pale);color:var(--red);padding:2px 8px;border-radius:2px;font-size:0.67rem;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;}
+.double-tag{display:inline-block;margin-left:8px;background:var(--yellow-pale);color:var(--yellow-dark);padding:2px 8px;border-radius:2px;font-size:0.67rem;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;}
+.cost-tag{display:block;font-size:0.72rem;color:var(--orange);margin-top:2px;font-weight:600;}
+.chk-row{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--white);border:1px solid var(--border);border-radius:3px;margin-bottom:8px;cursor:pointer;transition:all 0.15s;font-family:'DM Sans',sans-serif;color:var(--text);}
+.chk-row:hover{border-color:var(--orange);background:var(--orange-pale);}
+.chk-row.checked{border-color:var(--green);background:var(--green-pale);border-left:4px solid var(--green);}
+.chk-box{width:22px;height:22px;border-radius:4px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.15s;font-size:14px;color:var(--white);}
+.chk-row.checked .chk-box{background:var(--green);border-color:var(--green);}
+.cnt-area{text-align:right;min-width:55px;}
+.cnt-num{font-size:0.72rem;font-weight:700;}
+.cnt-bar{width:48px;height:3px;background:var(--border);border-radius:2px;margin-top:4px;}
+.cnt-fill{height:100%;border-radius:2px;transition:width 0.3s;}
+
+.sched-row{display:flex;align-items:center;gap:12px;padding:10px 16px;background:var(--white);border:1px solid var(--border);border-radius:3px;margin-bottom:6px;}
+.mandatory-ev{display:flex;gap:16px;padding:10px 16px;background:var(--white);border:1px solid var(--border);border-radius:3px;margin-bottom:6px;}
+.mand-time{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:1px;color:var(--orange);min-width:100px;flex-shrink:0;}
+
+.error-box{background:var(--red-pale);border:1px solid rgba(211,47,47,0.25);border-radius:3px;padding:12px 16px;margin-bottom:16px;color:var(--red);font-size:0.85rem;}
+.success-box{background:var(--green-pale);border:1px solid rgba(46,125,50,0.25);border-radius:3px;padding:14px 18px;margin-bottom:16px;}
+.success-box p{color:var(--green);font-weight:700;margin:0;font-size:0.9rem;}
+.success-icon{width:72px;height:72px;border-radius:50%;background:var(--green-pale);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:36px;color:var(--green);}
+
+.info-box{background:var(--yellow-pale);border:2px solid var(--yellow);border-radius:3px;padding:12px 16px;margin-bottom:16px;font-size:0.85rem;color:var(--yellow-dark);}
+.info-box strong{color:var(--blue-dark);}
+
+.admin-act{background:var(--white);border:1px solid var(--border);border-radius:3px;padding:14px 18px;margin-bottom:8px;}
+.admin-hdr{display:flex;justify-content:space-between;align-items:center;}
+.name-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.name-tag{background:var(--blue-pale);border-radius:2px;padding:4px 10px;font-size:0.8rem;color:var(--text);display:flex;align-items:center;gap:6px;}
+.name-tag button{background:none;border:none;color:var(--red);cursor:pointer;padding:0 2px;font-size:14px;font-weight:700;line-height:1;}
+.filter-btns{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap;}
+.filter-btn{border:none;border-radius:3px;padding:8px 16px;font-size:0.78rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s;letter-spacing:0.5px;}
+.filter-btn.active{background:var(--orange);color:var(--white);}
+.filter-btn:not(.active){background:var(--white);color:var(--muted);border:1px solid var(--border);}
+.stat-badge{background:var(--orange);color:var(--white);border-radius:2px;padding:3px 10px;font-size:0.75rem;font-weight:700;}
+
+.lookup-card{background:var(--white);border:1px solid var(--border);border-left:5px solid var(--orange);border-radius:3px;padding:16px 20px;margin-bottom:10px;}
+.lookup-card h4{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:1.5px;color:var(--blue);margin-bottom:2px;}
+.lookup-card .lc-time{font-size:0.78rem;color:var(--muted);}
+.lookup-act-card{background:var(--off);border-radius:3px;padding:10px 14px;display:flex;align-items:center;gap:10px;margin-top:8px;}
+
+.thu-mode-toggle{display:flex;gap:8px;margin-bottom:16px;}
+.thu-mode-btn{flex:1;padding:14px 12px;border-radius:3px;border:2px solid var(--border);background:var(--white);cursor:pointer;text-align:center;transition:all 0.15s;font-family:'DM Sans',sans-serif;}
+.thu-mode-btn:hover{border-color:var(--orange);}
+.thu-mode-btn.active{border-color:var(--orange);background:var(--orange-pale);}
+.thu-mode-btn .tmb-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:1px;color:var(--text);margin-bottom:2px;}
+.thu-mode-btn .tmb-desc{font-size:0.72rem;color:var(--muted);}
+.thu-mode-btn.active .tmb-title{color:var(--orange);}
+
+@media(max-width:640px){.home h1{font-size:3.4rem;}.home .subtitle{font-size:1.2rem;}.home-inner{padding:36px 20px;}.page-top{padding:20px 20px;}.page-inner{padding:20px 12px 40px;}}
+</style>
+</head>
+<body>
+
+<div id="view-home" class="view active">
+  <div class="home">
+    <div class="home-inner">
+    <div class="home-tag">Fjölbrautaskólinn í Garðabæ</div>
+    <h1>IMBRA <em>2026</em></h1>
+    <div class="subtitle">HAMINGJAN HÚN ER HÉR!</div>
+    <div class="date-info">11.–12. mars • Skráningarkerfi</div>
+    <div class="home-cards">
+      <button class="home-card" onclick="showView('signup')"><span class="hc-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ff6b00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span><div><div class="hc-title">SKRÁ MIG</div><div class="hc-desc">Veldu viðburði og skráðu þig</div></div><span class="hc-arrow">→</span></button>
+      <button class="home-card" onclick="showView('lookup')"><span class="hc-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5C400" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span><div><div class="hc-title">FINNA SKRÁNINGU</div><div class="hc-desc">Skoðaðu hvað þú ert skráð/ur í</div></div><span class="hc-arrow">→</span></button>
+      <button class="home-card" onclick="showView('schedule')"><span class="hc-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ff6b00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="16" y1="14" x2="16" y2="14.01"/><line x1="8" y1="18" x2="8" y2="18.01"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg></span><div><div class="hc-title">DAGSKRÁ</div><div class="hc-desc">Skoðaðu alla dagskrá Imbru</div></div><span class="hc-arrow">→</span></button>
+      <button class="home-card" onclick="showView('admin')"><span class="hc-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5C400" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg></span><div><div class="hc-title">STJÓRNBORÐ</div><div class="hc-desc">Fyrir skipuleggjendur</div></div><span class="hc-arrow">→</span></button>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div id="view-signup" class="view"><div class="page">
+  <div class="page-top"><div><div class="ptag">Fjölbrautaskólinn í Garðabæ</div><h2>IMBRA 2026 — SKRÁNING</h2></div></div>
+  <div class="page-inner">
+    <button class="back-btn" onclick="showView('home')">← Til baka</button>
+    <h3 class="section-title">SKRÁNING</h3>
+    <p class="section-desc">Veldu viðburði fyrir hvert tímabil</p>
+    <div style="margin-bottom:28px;">
+      <label style="display:block;font-size:0.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:8px;">Fullt nafn</label>
+      <input type="text" id="student-name" class="text-input" placeholder="Sláðu inn nafnið þitt...">
+    </div>
+    <div id="signup-slots"></div>
+    <div id="signup-error" class="error-box" style="display:none;"></div>
+    <button class="btn btn-orange" style="width:100%;font-size:0.95rem;padding:14px;letter-spacing:1px;" onclick="handleSubmit()" id="submit-btn">STAÐFESTA SKRÁNINGU</button>
+  </div>
+</div></div>
+
+<div id="view-success" class="view"><div class="page">
+  <div class="page-top"><div><div class="ptag">Fjölbrautaskólinn í Garðabæ</div><h2>IMBRA 2026</h2></div></div>
+  <div class="page-inner" style="text-align:center;padding-top:48px;">
+    <div class="success-icon">✓</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--blue);letter-spacing:2px;margin:0 0 12px;">SKRÁNING TÓKST!</h2>
+    <p id="success-msg" style="color:var(--muted);font-size:0.95rem;margin:0 0 32px;"></p>
+    <div style="display:flex;flex-direction:column;gap:10px;max-width:300px;margin:0 auto;">
+      <button class="btn btn-orange" onclick="goToLookupFromSuccess()">Sjá skráninguna mína</button>
+      <button class="btn btn-ghost" onclick="showView('home')">Til baka á forsíðu</button>
+    </div>
+  </div>
+</div></div>
+
+<div id="view-lookup" class="view"><div class="page">
+  <div class="page-top"><div><div class="ptag">Fjölbrautaskólinn í Garðabæ</div><h2>IMBRA 2026 — FINNA SKRÁNINGU</h2></div></div>
+  <div class="page-inner">
+    <button class="back-btn" onclick="showView('home')">← Til baka</button>
+    <h3 class="section-title">FINNA SKRÁNINGU</h3>
+    <p class="section-desc">Sláðu inn nafnið þitt til að sjá hvað þú ert skráð/ur í</p>
+    <div style="display:flex;gap:8px;margin-bottom:24px;">
+      <input type="text" id="lookup-name" class="text-input" placeholder="Nafn..." style="flex:1;" onkeydown="if(event.key==='Enter')handleLookup()">
+      <button class="btn btn-orange" onclick="handleLookup()">Leita</button>
+    </div>
+    <div id="lookup-results"></div>
+  </div>
+</div></div>
+
+<div id="view-schedule" class="view"><div class="page">
+  <div class="page-top"><div><div class="ptag">Fjölbrautaskólinn í Garðabæ</div><h2>IMBRA 2026 — DAGSKRÁ</h2></div></div>
+  <div class="page-inner">
+    <button class="back-btn" onclick="showView('home')">← Til baka</button>
+    <h3 class="section-title">DAGSKRÁ IMBRU 2026</h3>
+    <div style="margin-top:20px;" id="schedule-content"></div>
+  </div>
+</div></div>
+
+<div id="view-admin" class="view"><div class="page">
+  <div class="page-top"><div><div class="ptag">Fjölbrautaskólinn í Garðabæ</div><h2>IMBRA 2026 — STJÓRNBORÐ</h2></div></div>
+  <div class="page-inner">
+    <button class="back-btn" onclick="showView('home')">← Til baka</button>
+    <h3 class="section-title">STJÓRNBORÐ</h3>
+    <div id="admin-login" style="margin-top:16px;">
+      <p class="section-desc">Sláðu inn aðgangskóða</p>
+      <div style="display:flex;gap:8px;">
+        <input type="password" id="admin-code" class="text-input" placeholder="Kóði..." style="flex:1;" onkeydown="if(event.key==='Enter')handleAdminLogin()">
+        <button class="btn btn-blue" onclick="handleAdminLogin()">Opna</button>
+      </div>
+      <p id="admin-error" style="color:var(--red);font-size:0.8rem;margin-top:10px;display:none;">Rangur kóði</p>
+    </div>
+    <div id="admin-panel" style="display:none;margin-top:16px;">
+      <div class="filter-btns" id="admin-filters"></div>
+      <div id="admin-content"></div>
+    </div>
+  </div>
+</div></div>
+
+<script>
+const SCHEDULE = {
+  mandatory: {
+    title: "MIÐVIKUDAGUR 11. MARS", subtitle: "Allir á sal",
+    events: [
+      { time:"9:30–10:15", name:"Hamingjan hún er hér!", location:"Urðarbrunnur" },
+      { time:"10:30–11:30", name:"Escape Room", location:"Kennslustofur samkvæmt fyrsta tíma á föstudögum", note:"Ef þú ert ekki í fyrsta tíma á föstudögum þá mætir þú á bókasafnið." },
+      { time:"11:30–13:00", name:"Hádegismatur", location:"Kaffihús á vegum nemenda í viðburðarstjórnun", note:"Hægt er að kaupa góðan hádegismat", cafe:true }
+    ]
+  },
+  mandatory_thu: {
+    title: "FIMMTUDAGUR 12. MARS", subtitle: "Kaffihús opið",
+    events: [
+      { time:"Allan morguninn", name:"Kaffihús á vegum nemenda í viðburðarstjórnun", note:"Hægt er að kaupa góðan mat og drykk", cafe:true }
+    ]
+  },
+  wed: {
+    id:"mid_eh", title:"MIÐVIKUDAGUR 11. MARS — EFTIR HÁDEGI", time:"13:00–15:00", storageKey:"imbra2026-mid-eh", color:"blue",
+    activities: [
+      { id:"sund", name:"Sund í Ásgarði", max:100, cost:"1.350 kr (eldri en 18 ára) — Greitt á staðnum" },
+      { id:"skautar", name:"Skautahöllin í Laugardal", max:200, cost:"1.350 kr m/skautaleigu — Greitt á staðnum" },
+      { id:"keila", name:"Keila", max:132, location:"Keiluhöllin í Egilshöll", cost:"1.300 kr — Greitt á staðnum" },
+      { id:"skopp", name:"Skopp", max:50, cost:"2.999 kr — Greitt á staðnum" },
+      { id:"spil_mid", name:"Komdu að spila", max:50, location:"V302 og V315" },
+      { id:"hlaupa", name:"Út að hlaupa/ganga með Dagnýju og Ingibjörgu", max:50, desc:"Hlaupadrottningarnar Dagný og Ingibjörg verða við Vífilstaðavatn og fara með ykkur skemmtilegan hring. Hægt að ganga og/eða hlaupa. Mæting á neðra bílastæði." },
+      { id:"dans", name:"Dans", max:100, location:"Urðarbrunnur" },
+      { id:"blak", name:"Blakmót", max:40, location:"Mýrin" },
+      { id:"breytafotum_mid", name:"Breyta fötum", max:20, location:"V309", desc:"Komdu með gömlu föt og gerðu að nýjum." },
+      { id:"hitster_mid", name:"Hitster", max:30, location:"V313" },
+      { id:"kaffihus", name:"Kaffihúsferð", max:20, location:"Te og kaffi í Garðabæ" },
+      { id:"tafl", name:"Komdu að tefla", max:30, location:"Miðgarður" },
+      { id:"pila", name:"Píla", max:30, location:"Miðgarður" },
+      { id:"tarot_mid", name:"Tarotspil", max:20, location:"A302", desc:"Lærðu á spilin og láttu spá fyrir þér." },
+      { id:"snl_mid", name:"Saturday Night Live", max:40, location:"A305", desc:"Áslaug fjallar um skets-þættina Saturday Night Live sem hafa verið sýndir í beinni útsendingu frá New York í 51 ár." }
+    ]
+  },
+  thu: {
+    tvofaldir: {
+      id:"fim_tvo", title:"FIMMTUDAGUR — TVÖFALDUR VIÐBURÐUR", time:"9:30–11:45 (báðir tímar)", storageKey:"imbra2026-fim-tvo", color:"yellow",
+      activities: [
+        { id:"badminton", name:"Badmintonmót", max:40, location:"Mýrin" },
+        { id:"malad_tronur", name:"Málað á trönur með heimstónlist", max:20, location:"V120", desc:"Málað frjálst á trönum undir takti frá heimstónlist. Þar sem gleðin verður í fyrirrúmi." },
+        { id:"breytafotum_fim", name:"Breyta fötum", max:20, location:"V309" },
+        { id:"fluguhn", name:"Fluguhnýtingar", max:8, location:"A210", desc:"Arnór kennir fluguhnýtingar. Allar græjur verða á staðnum." }
+      ]
+    },
+    fyrri: {
+      id:"fim_fyrri", title:"FIMMTUDAGUR — FYRRI TÍMI", time:"9:30–10:30", storageKey:"imbra2026-fim-fyrri", color:"blue",
+      activities: [
+        { id:"perlad_f", name:"Perlað af Krafti", max:200, location:"Matsalur nemenda" },
+        { id:"spil_f", name:"Komdu að spila", max:40, location:"V302 og V315" },
+        { id:"pubquiz_f", name:"Pub Quiz", max:40, location:"A307" },
+        { id:"stjornmal_f", name:"Stjórnmál í Urðabrunni", max:100, location:"Urðarbrunnur" },
+        { id:"kilroy", name:"Kilroy", max:30, location:"A305" },
+        { id:"hitster_f", name:"Hitster", max:30, location:"V313" },
+        { id:"lydhasskoli", name:"Lýðháskólinn Flateyri", max:50, location:"A302" },
+        { id:"snl_f", name:"Saturday Night Live", max:40, location:"V305", desc:"Áslaug fjallar um skets-þættina Saturday Night Live sem hafa verið sýndir í beinni útsendingu frá New York í 51 ár." }
+      ]
+    },
+    seinni: {
+      id:"fim_seinni", title:"FIMMTUDAGUR — SEINNI TÍMI", time:"10:45–11:45", storageKey:"imbra2026-fim-seinni", color:"orange",
+      activities: [
+        { id:"pubquiz_s", name:"Pub Quiz", max:40, location:"A307" },
+        { id:"stridid", name:"Stríðið í Íran", max:40, location:"A305", desc:"Kristinn, Guðmundur og Gunnar leiða ykkur í allan sannleika um stríðið í Íran." },
+        { id:"perlad_s", name:"Perlað af Krafti", max:200, location:"Matsalur nemenda" },
+        { id:"brunch", name:"Brunch Yndisauki", max:70, location:"Matsalur starfsfólks", cost:"2.400 kr (pönnukökur, egg, beikon og grísk jógúrt með múslí) — Greitt á skrifstofu skólans" },
+        { id:"spil_s", name:"Komdu að spila", max:40, location:"V302 og V315" },
+        { id:"spaensk", name:"Spænsk tónlist", max:40, location:"V314", desc:"Snædís kynnir ykkur fyrir spænskri tónlist. Hlustað verður á tónlist af ýmsum toga frá spænskumælandi löndum, rýnt í textana og sagðar sögur af tónlistarmönnum." },
+        { id:"stjornmal_s", name:"Stjórnmál í Urðabrunni", max:100, location:"Urðarbrunnur" }
+      ]
+    }
+  }
+};
+
+const CAFE_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff6b00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;flex-shrink:0;"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>';
+
+function renderMandatoryBlock(section, extraClass) {
+  let h='<div style="margin-bottom:20px;"><div class="slot-hdr-mandatory"><h4>'+section.title+'</h4><p>'+section.subtitle+'</p></div>';
+  for(const e of section.events){
+    h+='<div class="mandatory-ev" style="'+(e.cafe?'border-left:4px solid var(--orange);background:var(--orange-pale);':'')+'"><span class="mand-time">'+e.time+'</span><div style="display:flex;align-items:center;gap:0;">'+(e.cafe?CAFE_ICON:'')+'<div><div style="font-weight:600;">'+e.name+'</div>';
+    if(e.location)h+='<div style="font-size:0.75rem;color:var(--muted)">'+e.location+'</div>';
+    if(e.note)h+='<div style="font-size:0.78rem;color:var(--orange);margin-top:2px;">'+e.note+'</div>';
+    h+='</div></div></div>';
+  }
+  h+='</div>';return h;
+}
+
+const ALL_SLOTS = [SCHEDULE.wed, SCHEDULE.thu.tvofaldir, SCHEDULE.thu.fyrri, SCHEDULE.thu.seinni];
+
+// ============ GOOGLE SHEETS API ============
+// SETTU HLEKKINN ÞINN HÉR (frá Apps Script deployment):
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz6x9aVMIV-Kx_qr-ju_SuJ3Q0-K4wm4hd9EHQF18LG-WKraAHmWDVnC7MvjQWbeKNghw/exec";
+
+// Counts cache: { slotId: { actId: count } }
+let counts = {};
+
+async function apiCall(params) {
+  const url = new URL(SCRIPT_URL);
+  for (const [k,v] of Object.entries(params)) url.searchParams.set(k, typeof v === 'object' ? JSON.stringify(v) : v);
+  const resp = await fetch(url.toString(), { redirect: 'follow', headers: { 'Accept': 'application/json' } });
+  if (!resp.ok) throw new Error('HTTP ' + resp.status);
+  return await resp.json();
+}
+
+const ADMIN_CODE = "imbra2026admin";
+let registrations = {};
+let selections = {};
+let thuMode = null;
+let lastSubmittedName = "";
+let adminFilter = "all";
+let mandChecks = { hamingjan: false, escape: false };
+
+function toggleMand(key) { mandChecks[key] = !mandChecks[key]; renderSignup(); }
+
+async function loadAllRegistrations() {
+  try {
+    const resp = await apiCall({ action: "getAll" });
+    if (resp.success) {
+      counts = resp.data;
+      // Also build registrations for admin view - counts only
+      for (const slot of ALL_SLOTS) {
+        registrations[slot.id] = counts[slot.id] || {};
+      }
+    }
+  } catch(err) {
+    console.error("Villa við að sækja gögn:", err);
+  }
+}
+function getCount(slotId, actId) { return (counts[slotId] || {})[actId] || 0; }
+
+function showView(viewId) {
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+viewId).classList.add('active');
+  window.scrollTo(0,0);
+  if(viewId==='signup') renderSignup();
+  if(viewId==='schedule') renderSchedule();
+  if(viewId==='lookup') document.getElementById('lookup-results').innerHTML='';
+}
+
+function slotHdrHTML(title,time,color) {
+  return '<div class="slot-hdr"><div class="slot-accent '+color+'"></div><div class="slot-label '+color+'"><h4>'+title+'</h4><p>'+time+'</p></div></div>';
+}
+
+function actHTML(slotId, act, sel) {
+  const count=getCount(slotId,act.id), full=count>=act.max, selected=sel===act.id;
+  const pct=Math.min((count/act.max)*100,100);
+  const clr=full?'var(--red)':pct>80?'var(--orange)':'var(--green)';
+  let h='<button class="act-opt '+(selected?'act-selected ':' ')+(full?'act-full':'')+'" onclick="'+(full?'':"selectAct('"+slotId+"','"+act.id+"')")+'" '+(full?'disabled':'')+'>';
+  h+='<div class="radio-c"><div class="radio-d"></div></div>';
+  h+='<div style="flex:1;"><div class="act-name">'+act.name+(full?'<span class="full-tag">Fullt</span>':'')+'</div>';
+  if(act.location) h+='<div class="act-loc">'+act.location+'</div>';
+  if(act.cost) h+='<div class="cost-tag">'+act.cost+'</div>';
+  if(act.desc) h+='<div style="font-size:0.75rem;color:var(--muted);margin-top:3px;line-height:1.4;">'+act.desc+'</div>';
+  h+='</div><div class="cnt-area"><div class="cnt-num" style="color:'+clr+'">'+count+'/'+act.max+'</div>';
+  h+='<div class="cnt-bar"><div class="cnt-fill" style="width:'+pct+'%;background:'+clr+'"></div></div></div></button>';
+  return h;
+}
+
+async function renderSignup() {
+  await loadAllRegistrations();
+  const c=document.getElementById('signup-slots');
+  c.innerHTML='';
+  document.getElementById('signup-error').style.display='none';
+
+  // Mandatory Wednesday morning checkboxes
+  let h='<div style="margin-bottom:32px;">';
+  h+='<div class="slot-hdr-mandatory"><h4>MIÐVIKUDAGUR 11. MARS</h4><p>Allir mæta — hakaðu við til staðfestingar</p></div>';
+  h+='<div class="chk-row '+(mandChecks.hamingjan?'checked':'')+'" onclick="toggleMand(\'hamingjan\')">';
+  h+='<div class="chk-box">'+(mandChecks.hamingjan?'✓':'')+'</div>';
+  h+='<div><div class="act-name">Hamingjan hún er hér!</div><div class="act-loc">9:30–10:15 • Urðarbrunnur</div></div></div>';
+  h+='<div class="chk-row '+(mandChecks.escape?'checked':'')+'" onclick="toggleMand(\'escape\')">';
+  h+='<div class="chk-box">'+(mandChecks.escape?'✓':'')+'</div>';
+  h+='<div><div class="act-name">Escape Room</div><div class="act-loc">10:30–11:30 • Kennslustofur samkvæmt fyrsta tíma á föstudögum. Ef þú ert ekki í fyrsta tíma á föstudögum þá mætir þú á bókasafnið.</div></div></div>';
+  h+='</div>';
+
+  // Wednesday afternoon
+  h+='<div style="margin-bottom:32px;">'+slotHdrHTML(SCHEDULE.wed.title, SCHEDULE.wed.time, SCHEDULE.wed.color);
+  for(const act of SCHEDULE.wed.activities) h+=actHTML(SCHEDULE.wed.id, act, selections[SCHEDULE.wed.id]);
+  h+='</div>';
+
+  // Thursday mode toggle
+  h+='<div style="margin-bottom:28px;">';
+  h+=slotHdrHTML('FIMMTUDAGUR 12. MARS — MORGUN','9:30–11:45','orange');
+  h+='<div class="info-box"><strong>Athugið:</strong> Tvöfaldir viðburðir taka báða tíma (9:30–11:45). Ef þú velur tvöfaldan viðburð þarftu ekki að velja fyrri/seinni tíma.</div>';
+  h+='<div class="thu-mode-toggle">';
+  h+='<button class="thu-mode-btn '+(thuMode==='tvofaldir'?'active':'')+'" onclick="setThuMode(\'tvofaldir\')"><div class="tmb-title">TVÖFALDUR</div><div class="tmb-desc">Einn viðburður í báða tíma</div></button>';
+  h+='<button class="thu-mode-btn '+(thuMode==='fyrri_seinni'?'active':'')+'" onclick="setThuMode(\'fyrri_seinni\')"><div class="tmb-title">FYRRI + SEINNI</div><div class="tmb-desc">Veldu einn úr hvoru tímabili</div></button>';
+  h+='</div>';
+
+  if(thuMode==='tvofaldir') {
+    h+=slotHdrHTML(SCHEDULE.thu.tvofaldir.title, SCHEDULE.thu.tvofaldir.time, SCHEDULE.thu.tvofaldir.color);
+    for(const act of SCHEDULE.thu.tvofaldir.activities) h+=actHTML(SCHEDULE.thu.tvofaldir.id, act, selections[SCHEDULE.thu.tvofaldir.id]);
+  } else if(thuMode==='fyrri_seinni') {
+    h+=slotHdrHTML(SCHEDULE.thu.fyrri.title, SCHEDULE.thu.fyrri.time, SCHEDULE.thu.fyrri.color);
+    for(const act of SCHEDULE.thu.fyrri.activities) h+=actHTML(SCHEDULE.thu.fyrri.id, act, selections[SCHEDULE.thu.fyrri.id]);
+    h+='<div style="height:16px;"></div>';
+    h+=slotHdrHTML(SCHEDULE.thu.seinni.title, SCHEDULE.thu.seinni.time, SCHEDULE.thu.seinni.color);
+    for(const act of SCHEDULE.thu.seinni.activities) h+=actHTML(SCHEDULE.thu.seinni.id, act, selections[SCHEDULE.thu.seinni.id]);
+  }
+  h+='</div>';
+  c.innerHTML=h;
+}
+
+function selectAct(slotId,actId) { selections[slotId]=actId; renderSignup(); }
+function setThuMode(mode) {
+  thuMode=mode;
+  delete selections[SCHEDULE.thu.tvofaldir.id];
+  delete selections[SCHEDULE.thu.fyrri.id];
+  delete selections[SCHEDULE.thu.seinni.id];
+  renderSignup();
+}
+
+function getRequiredSlots() {
+  const slots=[SCHEDULE.wed];
+  if(thuMode==='tvofaldir') slots.push(SCHEDULE.thu.tvofaldir);
+  else if(thuMode==='fyrri_seinni') { slots.push(SCHEDULE.thu.fyrri); slots.push(SCHEDULE.thu.seinni); }
+  return slots;
+}
+
+async function handleSubmit() {
+  const nameInput=document.getElementById('student-name'), trimmed=nameInput.value.trim();
+  const errorBox=document.getElementById('signup-error'), submitBtn=document.getElementById('submit-btn');
+  if(!trimmed){errorBox.textContent='Vinsamlegast sláðu inn nafnið þitt.';errorBox.style.display='block';return;}
+  if(!mandChecks.hamingjan || !mandChecks.escape){errorBox.textContent='Vinsamlegast hakaðu við báða viðburði á miðvikudagsmorgun.';errorBox.style.display='block';return;}
+  if(!thuMode){errorBox.textContent='Vinsamlegast veldu tegund fimmtudagsviðburðar (tvöfaldur eða fyrri+seinni).';errorBox.style.display='block';return;}
+  const required=getRequiredSlots();
+  for(const slot of required){if(!selections[slot.id]){errorBox.textContent='Vinsamlegast veldu viðburð fyrir: '+slot.title;errorBox.style.display='block';return;}}
+  submitBtn.disabled=true;submitBtn.textContent='SKRÁI...';errorBox.style.display='none';
+  try {
+    // Build slots object for API: { "mid_eh": "sund", "fim_fyrri": "pubquiz_f" }
+    const slotsObj = {};
+    for (const slot of required) {
+      slotsObj[slot.id] = selections[slot.id];
+    }
+    const resp = await apiCall({ action: "register", name: trimmed, slots: slotsObj });
+    if (resp.success) {
+      lastSubmittedName = trimmed;
+      document.getElementById('success-msg').textContent = resp.message || 'Takk, '+trimmed+'! Skráning tókst.';
+      nameInput.value='';selections={};thuMode=null;mandChecks={hamingjan:false,escape:false};showView('success');
+    } else {
+      errorBox.textContent = resp.error || 'Villa kom upp.';
+      errorBox.style.display='block';
+    }
+  }catch(err){errorBox.textContent='Villa kom upp. Athugaðu nettengingu og reyndu aftur.';errorBox.style.display='block';console.error(err);}
+  submitBtn.disabled=false;submitBtn.textContent='STAÐFESTA SKRÁNINGU';
+}
+
+function goToLookupFromSuccess(){showView('lookup');document.getElementById('lookup-name').value=lastSubmittedName;handleLookup();}
+
+async function handleLookup(){
+  const trimmed=document.getElementById('lookup-name').value.trim();
+  const c=document.getElementById('lookup-results');
+  if(!trimmed)return;
+  c.innerHTML='<p style="color:var(--muted)">Leita...</p>';
+  try {
+    const resp = await apiCall({ action: "lookup", name: trimmed });
+    if (resp.success && resp.results.length > 0) {
+      const results = resp.results.map(r => {
+        const slot = ALL_SLOTS.find(s => s.id === r.sheet);
+        const act = slot ? slot.activities.find(a => a.id === r.actId) : null;
+        return { slot: slot?.title||r.sheet, time: slot?.time||'', activity: act?.name||r.actId, location: act?.location||'' };
+      });
+      let h='<div class="success-box"><p>Skráning fundin fyrir '+trimmed+'</p></div>';
+      h+=renderMandatoryBlock(SCHEDULE.mandatory);
+      h+=renderMandatoryBlock(SCHEDULE.mandatory_thu);
+      h+='<div style="height:16px;"></div>';
+      for(const r of results){h+='<div class="lookup-card"><h4>'+r.slot+'</h4><div class="lc-time">'+r.time+'</div><div class="lookup-act-card"><span style="font-size:18px;color:var(--green)">✓</span><div><div style="font-weight:600;">'+r.activity+'</div>'+(r.location?'<div style="font-size:0.75rem;color:var(--muted)">'+r.location+'</div>':'')+'</div></div></div>';}
+      c.innerHTML=h;
+    } else {
+      c.innerHTML='<div class="error-box">Engin skráning fannst fyrir „'+trimmed+'". Athugaðu hvort nafnið er rétt ritað eða skráðu þig á forsíðunni.</div>';
+    }
+  } catch(err) {
+    c.innerHTML='<div class="error-box">Villa kom upp við leit. Reyndu aftur.</div>';
+    console.error(err);
+  }
+}
+
+async function renderSchedule(){
+  await loadAllRegistrations();
+  const c=document.getElementById('schedule-content');
+  let h=renderMandatoryBlock(SCHEDULE.mandatory);
+
+  function schedSlot(slot){
+    let s='<div style="margin-bottom:28px;">'+slotHdrHTML(slot.title,slot.time,slot.color);
+    for(const act of slot.activities){
+      const count=getCount(slot.id,act.id),full=count>=act.max,pct=Math.min((count/act.max)*100,100);
+      const clr=full?'var(--red)':pct>80?'var(--orange)':'var(--green)';
+      s+='<div class="sched-row" style="opacity:'+(full?0.45:1)+'"><div style="flex:1"><div style="font-weight:600;font-size:0.9rem;">'+act.name+(full?'<span class="full-tag">Fullt</span>':'')+'</div>';
+      if(act.location)s+='<div style="font-size:0.75rem;color:var(--muted)">'+act.location+'</div>';
+      if(act.cost)s+='<div class="cost-tag">'+act.cost+'</div>';
+      if(act.desc)s+='<div style="font-size:0.75rem;color:var(--muted);margin-top:3px;line-height:1.4;">'+act.desc+'</div>';
+      s+='</div><div style="text-align:right;min-width:70px;"><div style="font-size:0.78rem;font-weight:700;color:'+clr+'">'+count+'/'+act.max+'</div>';
+      s+='<div class="cnt-bar" style="width:56px;margin-top:4px;"><div class="cnt-fill" style="width:'+pct+'%;background:'+clr+'"></div></div></div></div>';
+    }
+    s+='</div>';return s;
+  }
+
+  h+=schedSlot(SCHEDULE.wed);
+  h+=renderMandatoryBlock(SCHEDULE.mandatory_thu);
+  h+=schedSlot(SCHEDULE.thu.tvofaldir);
+  h+=schedSlot(SCHEDULE.thu.fyrri);
+  h+=schedSlot(SCHEDULE.thu.seinni);
+  c.innerHTML=h;
+}
+
+function handleAdminLogin(){
+  if(document.getElementById('admin-code').value===ADMIN_CODE){document.getElementById('admin-login').style.display='none';document.getElementById('admin-panel').style.display='block';renderAdminFilters();renderAdmin();}
+  else{document.getElementById('admin-error').style.display='block';}
+}
+function renderAdminFilters(){
+  const c=document.getElementById('admin-filters');
+  let h='<button class="filter-btn '+(adminFilter==='all'?'active':'')+'" onclick="setAdminFilter(\'all\')">Allt</button>';
+  h+='<button class="filter-btn" onclick="renderAdmin()" style="background:var(--orange-pale);color:var(--orange-dark);border:1px solid rgba(255,107,0,0.25);">🔄</button>';
+  for(const s of ALL_SLOTS){const l=s.title.replace(/.*—\s*/,'').trim();h+='<button class="filter-btn '+(adminFilter===s.id?'active':'')+'" onclick="setAdminFilter(\''+s.id+'\')">'+l+'</button>';}
+  c.innerHTML=h;
+}
+function setAdminFilter(f){adminFilter=f;renderAdminFilters();renderAdmin();}
+
+async function renderAdmin(){
+  await loadAllRegistrations();
+  const c=document.getElementById('admin-content');let h='';
+  h+='<div style="background:var(--yellow-pale);border:1px solid var(--yellow);border-radius:3px;padding:12px 16px;margin-bottom:16px;font-size:0.85rem;color:var(--text);">💡 <strong>Athugið:</strong> Til að sjá nöfn nemenda og eyða skráningum, opnaðu <strong>Google Sheet</strong> töfluna. Hér sérðu fjölda skráðra í hvern viðburð.</div>';
+  for(const slot of ALL_SLOTS.filter(s=>adminFilter==='all'||adminFilter===s.id)){
+    const slotCounts = counts[slot.id]||{};
+    const total=Object.values(slotCounts).reduce((s,a)=>s+a,0);
+    h+='<div style="margin-bottom:28px;">'+slotHdrHTML(slot.title,slot.time+' • '+total+' skráð',slot.color);
+    for(const act of slot.activities){
+      const cnt=slotCounts[act.id]||0;const full=cnt>=act.max;
+      h+='<div class="admin-act"><div class="admin-hdr"><div><span style="font-weight:700;">'+act.name+'</span>';
+      if(act.location)h+='<span style="color:var(--muted);font-size:0.78rem;margin-left:8px;">'+act.location+'</span>';
+      h+='</div><span style="font-weight:700;font-size:0.9rem;color:'+(full?'var(--red)':'var(--green)')+';">'+cnt+'/'+act.max+'</span></div></div>';
+    }
+    h+='</div>';
+  }
+  c.innerHTML=h;
+}
+
+async function removeStudent(slotId,activityId,name){
+  try{
+    const resp = await apiCall({ action: "remove", sheet: slotId, name: name });
+    if(resp.success) renderAdmin();
+  }catch(err){console.error(err);}
+}
+
+loadAllRegistrations();
+</script>
+</body>
+</html>
