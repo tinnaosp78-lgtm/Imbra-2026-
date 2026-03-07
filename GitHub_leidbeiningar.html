@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub Leiðbeiningar — IMBRA 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root { --blue:#0033A0; --darkblue:#001f6b; --orange:#FF6B00; --green:#059669; --lightgreen:#d1fae5; --gray:#f4f4f8; --border:#dde3f0; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:"DM Sans",sans-serif; background:var(--gray); color:#111; }
+  header { background:var(--blue); padding:28px 48px; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:12px; }
+  header h1 { font-family:"Bebas Neue",sans-serif; font-size:40px; color:white; letter-spacing:2px; }
+  header h1 span { color:var(--orange); }
+  .sub { color:rgba(255,255,255,0.6); font-size:13px; letter-spacing:1px; margin-top:4px; }
+  main { max-width:780px; margin:36px auto; padding:0 24px 60px; }
+  .step { background:white; border-radius:12px; border:1px solid var(--border); margin-bottom:18px; overflow:hidden; }
+  .step-header { background:var(--blue); padding:14px 24px; display:flex; align-items:center; gap:14px; }
+  .step-num { background:var(--orange); color:white; font-family:"Bebas Neue",sans-serif; font-size:20px; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .step-title { font-family:"Bebas Neue",sans-serif; font-size:19px; color:white; letter-spacing:1.5px; }
+  .step-body { padding:20px 28px; font-size:15px; line-height:1.75; color:#333; }
+  .step-body p { margin-bottom:10px; }
+  .step-body p:last-child { margin-bottom:0; }
+  .highlight { background:#fff3e8; border-left:4px solid var(--orange); border-radius:0 8px 8px 0; padding:12px 16px; margin:12px 0; font-size:14px; line-height:1.7; }
+  .info { background:#eef2ff; border-left:4px solid var(--blue); border-radius:0 8px 8px 0; padding:12px 16px; margin:12px 0; font-size:14px; line-height:1.7; }
+  .img-hint { background:#f8f8fc; border:2px dashed var(--border); border-radius:8px; padding:14px 18px; margin:12px 0; font-size:14px; color:#666; line-height:1.7; }
+  .btn-look { display:inline-block; background:var(--blue); color:white; font-weight:700; font-size:13px; padding:5px 12px; border-radius:4px; margin:0 2px; }
+  .btn-green { background:#238636; }
+  .btn-gray { background:#6e7681; }
+  .code { background:#f0f0f8; border:1px solid var(--border); border-radius:6px; padding:8px 14px; font-family:monospace; font-size:14px; color:var(--blue); margin:10px 0; word-break:break-all; }
+  .success-box { background:var(--lightgreen); border:2px solid var(--green); border-radius:10px; padding:22px 28px; margin-top:28px; text-align:center; }
+  .success-box h3 { font-family:"Bebas Neue",sans-serif; font-size:24px; color:#065f46; letter-spacing:2px; margin-bottom:8px; }
+  .success-box p { color:#047857; font-size:14px; line-height:1.7; }
+  strong { color:var(--blue); }
+  a { color:var(--orange); font-weight:700; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>GITHUB <span>LEIÐBEININGAR</span></h1>
+    <div class="sub">HVERNIG Á AÐ HÝSA IMBRA 2026 SKRÁRNAR</div>
+  </div>
+</header>
+<main>
+
+<!-- SKREF 1 -->
+<div class="step">
+  <div class="step-header"><div class="step-num">1</div><div class="step-title">HLAÐAÐU UPP ÖLLUM SKRÁNUM</div></div>
+  <div class="step-body">
+    <p>Þú ert þegar inni á repository síðunni þinni <strong>Imbra-2026-</strong>.</p>
+    <p>Smelltu á <span class="btn-look">Add file ▾</span> → veldu <strong>"Upload files"</strong></p>
+    <p>Dragðu <strong>allar HTML skrárnar</strong> inn í gluggann eða smelltu "choose your files":</p>
+    <div class="img-hint">
+      📄 imbra2026_dagskra.html<br>
+      📄 imbra2026_skraning.html<br>
+      📄 imbra2026_postur_forskodum.html<br>
+      📄 EscapeRoom_Kennari.html<br>
+      📄 EscapeRoom_Nemendur.html<br>
+      📄 EmailJS_leidbeiningar.html<br>
+      📄 GoogleForms_leidbeiningar.html
+    </div>
+    <p>Skrunaðu niður og smelltu á græna hnappinn <span class="btn-look btn-green">Commit changes</span></p>
+  </div>
+</div>
+
+<!-- SKREF 2 -->
+<div class="step">
+  <div class="step-header"><div class="step-num">2</div><div class="step-title">KVEIKTU Á GITHUB PAGES</div></div>
+  <div class="step-body">
+    <p>Smelltu á <span class="btn-look btn-gray">⚙ Settings</span> flipann efst til hægri á síðunni.</p>
+    <p>Í vinstri valmyndinni — smelltu á <strong>"Pages"</strong> (þarf að skruna niður aðeins).</p>
+    <p>Undir <strong>"Branch"</strong> — smelltu á fellivalmyndina sem segir <strong>"None"</strong> og veldu <strong>"main"</strong>.</p>
+    <p>Smelltu á <span class="btn-look btn-green">Save</span></p>
+    <div class="highlight">⏱ Bíddu 1–2 mínútur — GitHub er að setja upp síðuna þína. Endurhlöðu síðuna og þú munt sjá grænan reit með hlekknum!</div>
+  </div>
+</div>
+
+<!-- SKREF 3 -->
+<div class="step">
+  <div class="step-header"><div class="step-num">3</div><div class="step-title">FINNDU HLEKKINN ÞINN</div></div>
+  <div class="step-body">
+    <p>Þegar GitHub Pages er virkt mun grænur reitur birtast efst á Pages síðunni:</p>
+    <div class="img-hint">✅ <strong>Your site is live at:</strong> https://tinnaosp78-lgtm.github.io/Imbra-2026-/</div>
+    <p>Hér eru hlekkir á hverja skrá:</p>
+    <div class="code">https://tinnaosp78-lgtm.github.io/Imbra-2026-/imbra2026_dagskra.html</div>
+    <div class="code">https://tinnaosp78-lgtm.github.io/Imbra-2026-/imbra2026_skraning.html</div>
+    <div class="code">https://tinnaosp78-lgtm.github.io/Imbra-2026-/EscapeRoom_Nemendur.html</div>
+    <div class="code">https://tinnaosp78-lgtm.github.io/Imbra-2026-/EscapeRoom_Kennari.html</div>
+    <div class="info">💡 Skráarheitið í hlekknum verður að vera <strong>nákvæmlega</strong> eins og skráin heitir — há- og lágstafir skipta máli!</div>
+  </div>
+</div>
+
+<!-- SKREF 4 -->
+<div class="step">
+  <div class="step-header"><div class="step-num">4</div><div class="step-title">UPPFÆRA SKRÁR SÍÐAR</div></div>
+  <div class="step-body">
+    <p>Þegar þú vilt uppfæra skrá (t.d. bæta við Google Forms hlekk):</p>
+    <p>Farðu á repository síðuna → smelltu á skrána → smelltu á <strong>blýantstáknið ✏️</strong> til að breyta — eða smelltu á <span class="btn-look">Add file ▾</span> → <strong>"Upload files"</strong> og hladdu upp nýju útgáfunni.</p>
+    <div class="highlight">💡 Ef þú hleður upp skrá með sama nafni mun hún <strong>skrifa yfir</strong> gamla útgáfuna sjálfkrafa.</div>
+  </div>
+</div>
+
+<!-- SKREF 5 -->
+<div class="step">
+  <div class="step-header"><div class="step-num">5</div><div class="step-title">DEILDU MEÐ NEMENDUM</div></div>
+  <div class="step-body">
+    <p>Þú getur deilt hlekkjunum á Innu, í tölvupósti eða prentað sem QR kóða.</p>
+    <p>Til að búa til QR kóða — farðu á <a href="https://qr-code-generator.com" target="_blank">qr-code-generator.com</a>, límdu inn hlekk og sæktu mynd af QR kóðanum.</p>
+    <div class="info">💡 Nemendur þurfa ekkert að skrá sig inn — hlekkurinn er opinn fyrir alla!</div>
+  </div>
+</div>
+
+<div class="success-box">
+  <h3>🎉 ALLT TILBÚIÐ!</h3>
+  <p>Allar skrárnar þínar eru aðgengilegar á netinu — ókeypis, alltaf og hvar sem er.<br>
+  Eina sem þarf eftir er að setja Google Forms hlekk inn í dagskrána! 🙌</p>
+</div>
+
+</main>
+</body>
+</html>

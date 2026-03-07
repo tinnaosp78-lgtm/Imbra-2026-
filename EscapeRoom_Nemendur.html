@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escape Room — Nemendur</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="ico-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/>
+  </symbol>
+  <symbol id="ico-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+  </symbol>
+  <symbol id="ico-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
+  </symbol>
+  <symbol id="ico-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+  </symbol>
+  <symbol id="ico-trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0"/>
+  </symbol>
+  <symbol id="ico-photo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"/><path d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"/>
+  </symbol>
+  <symbol id="ico-envelope" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+  </symbol>
+  <symbol id="ico-document" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
+  </symbol>
+  <symbol id="ico-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/>
+  </symbol>
+</svg>
+<style>
+  :root { --blue:#0033A0; --darkblue:#001f6b; --orange:#FF6B00; --gray:#f4f4f8; --border:#dde3f0; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:"DM Sans",sans-serif; background:var(--gray); color:#111; }
+
+  header { background:var(--darkblue); padding:36px 48px; text-align:center; border-bottom:4px solid var(--orange); }
+  .logo { font-family:"Bebas Neue",sans-serif; font-size:60px; color:white; letter-spacing:4px; line-height:1; }
+  .logo span { color:var(--orange); }
+  .sub { color:rgba(255,255,255,0.5); font-size:13px; margin-top:6px; letter-spacing:2px; }
+  .motto { display:inline-block; border:2px solid var(--orange); color:var(--orange); font-family:"Bebas Neue",sans-serif; font-size:16px; letter-spacing:2px; padding:7px 20px; border-radius:30px; margin-top:14px; }
+
+  main { max-width:700px; margin:0 auto; padding:32px 24px 60px; }
+
+  .mission { background:var(--blue); border-radius:12px; padding:22px 28px; margin-bottom:24px; color:white; }
+  .mission h2 { font-family:"Bebas Neue",sans-serif; font-size:22px; letter-spacing:2px; margin-bottom:8px; color:white; display:flex; align-items:center; gap:10px; }
+  .mission h2 svg { width:22px; height:22px; stroke:var(--orange); flex-shrink:0; }
+  .mission p { color:rgba(255,255,255,0.8); font-size:15px; line-height:1.7; }
+
+  .phase { background:white; border-radius:12px; border:1px solid var(--border); margin-bottom:16px; overflow:hidden; }
+  .ph { padding:14px 24px; display:flex; align-items:center; gap:14px; }
+  .ph.blue { background:var(--blue); }
+  .ph.orange { background:var(--orange); }
+  .ph.dark { background:var(--darkblue); }
+  .ph.green { background:#FF6B9D; }
+  .ph-num { font-family:"Bebas Neue",sans-serif; font-size:32px; color:rgba(255,255,255,0.25); line-height:1; width:36px; }
+  .ph-ico { width:32px; height:32px; background:rgba(255,255,255,0.15); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .ph-ico svg { width:16px; height:16px; stroke:white; }
+  .ph-title { font-family:"Bebas Neue",sans-serif; font-size:20px; color:white; letter-spacing:1.5px; }
+  .ph-body { padding:20px 24px; }
+  .ph-body p { font-size:15px; line-height:1.75; color:#333; margin-bottom:10px; }
+  .ph-body p:last-child { margin-bottom:0; }
+
+  .step-row { display:flex; gap:12px; align-items:flex-start; padding:9px 0; border-bottom:1px solid var(--border); font-size:14px; color:#333; }
+  .step-row:last-child { border-bottom:none; }
+  .sr-ico { width:20px; height:20px; stroke:var(--blue); flex-shrink:0; margin-top:2px; }
+  .sr-ico.orange { stroke:var(--orange); fill:none; }
+
+  .note { background:#fff3e8; border-left:3px solid var(--orange); border-radius:0 6px 6px 0; padding:10px 14px; margin:12px 0; font-size:13px; line-height:1.6; color:#444; display:flex; gap:8px; align-items:flex-start; }
+  .note svg { width:16px; height:16px; stroke:var(--orange); fill:none; flex-shrink:0; margin-top:2px; }
+  .info { background:#eef2ff; border-left:3px solid var(--blue); border-radius:0 6px 6px 0; padding:10px 14px; margin:12px 0; font-size:13px; line-height:1.6; color:#444; display:flex; gap:8px; align-items:flex-start; }
+  .info svg { width:16px; height:16px; stroke:var(--blue); flex-shrink:0; margin-top:2px; }
+
+  .code-slots { display:flex; gap:6px; flex-wrap:wrap; margin:14px 0; justify-content:center; }
+  .slot { width:36px; height:44px; border:2px solid var(--blue); border-radius:6px; background:var(--gray); display:flex; align-items:center; justify-content:center; font-family:"Bebas Neue",sans-serif; font-size:22px; color:var(--border); }
+
+  .final { background:#FFD93D; border-radius:12px; padding:28px; margin-top:24px; text-align:center; border:none; box-shadow: 0 8px 32px rgba(255,211,61,0.35); }
+  .final h2 { font-family:"Bebas Neue",sans-serif; font-size:32px; color:#111; letter-spacing:3px; margin-bottom:16px; display:flex; align-items:center; justify-content:center; gap:12px; }
+  .final h2 svg { width:28px; height:28px; stroke:#0033A0; }
+  .final-steps { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px; }
+  .fs { background:rgba(255,255,255,0.45); border-radius:10px; padding:14px 16px; text-align:left; display:flex; gap:10px; align-items:flex-start; }
+  .fs svg { width:20px; height:20px; stroke:var(--orange); flex-shrink:0; margin-top:2px; }
+  .fs-text { font-size:14px; color:#222; line-height:1.5; }
+  .fs-text strong { color:#0033A0; }
+  .email-badge { display:inline-block; background:rgba(0,0,0,0.12); border:none; border-radius:6px; padding:6px 14px; font-family:monospace; font-size:14px; color:#111; margin-top:8px; font-weight:700; }
+  strong { color:var(--blue); }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">ESCAPE ROOM <span>🔐</span></div>
+  <div class="sub">IMBRA 2026</div>
+  <div class="motto">VINNIÐ SAMAN — LEYSIÐ ÞRAUTINA</div>
+</header>
+
+<main>
+
+<div class="mission">
+  <h2><svg><use href="#ico-users"/></svg> VERKEFNI HÓPSINS</h2>
+  <p>Þið eruð lið — allir í stofunni. Vinnið saman og leysið þrautina! Þið komist ekki áfram nema leysa hverja þraut til þess að fá næstu þraut.</p>
+</div>
+
+<!-- ÞRAUT 0 -->
+<div class="phase">
+  <div class="ph blue">
+    <div class="ph-num">1</div>
+    <div class="ph-ico"><svg><use href="#ico-users"/></svg></div>
+    <div class="ph-title">RAÐIÐ YKKUR Í RÖÐ EFTIR ALDRI</div>
+  </div>
+  <div class="ph-body">
+    <div class="step-row">
+      <svg class="sr-ico"><use href="#ico-arrow"/></svg>
+      Standið allir upp og raðið ykkur í beina röð — yngsti fremst, elsti aftast
+    </div>
+    <div class="step-row">
+      <svg class="sr-ico"><use href="#ico-arrow"/></svg>
+      Notið <strong>fæðingardag</strong> til að ákvarða staðinn (mánuður og dagur)
+    </div>
+    <div class="step-row">
+      <svg class="sr-ico"><use href="#ico-arrow"/></svg>
+      Þegar kennarinn staðfestir — farið á borðið ykkar og byrjið!
+    </div>
+    <div class="note">
+      <svg><use href="#ico-lock"/></svg>
+      Þið megið ekki fara á borðið fyrr en kennarinn hefur staðfest röðina
+    </div>
+  </div>
+</div>
+
+<!-- ÞRAUT 1 -->
+<div class="phase">
+  <div class="ph orange">
+    <div class="ph-num">2</div>
+    <div class="ph-ico"><svg><use href="#ico-eye"/></svg></div>
+    <div class="ph-title">MYNDGÁTA — ÞEKKIÐ ÞIÐ ÞESSA?</div>
+  </div>
+  <div class="ph-body">
+    <p>Á borðinu eru <strong style="color:var(--blue)">barnamyndir af starfsmönnum FG</strong>. Þekkið þið hverjir eru á myndunum?</p>
+    <div class="step-row">
+      <svg class="sr-ico"><use href="#ico-eye"/></svg>
+      Skoðið myndirnar vandlega saman
+    </div>
+    <div class="step-row">
+      <svg class="sr-ico"><use href="#ico-users"/></svg>
+      Ræðið saman — hverjir gætu þetta verið?
+    </div>
+    <div class="step-row">
+      <svg class="sr-ico"><use href="#ico-arrow"/></svg>
+      Skrifið niður nöfnin og kallið á kennarann til að staðfesta
+    </div>
+    <div class="info">
+      <svg><use href="#ico-eye"/></svg>
+      Ráð: Hugið að augunum — þau breytast síður en annað!
+    </div>
+  </div>
+</div>
+
+<!-- ÞRAUT 2 -->
+<div class="phase">
+  <div class="ph" style="background:white;border-bottom:2px solid var(--border);">
+    <div class="ph-num" style="color:var(--orange)">3</div>
+    <div class="ph-ico" style="background:rgba(255,107,0,0.1)"><svg style="stroke:var(--orange)"><use href="#ico-lock"/></svg></div>
+    <div class="ph-title" style="color:var(--blue)">18 SPURNINGAR — LEYNDARMÁLSKÓÐINN</div>
+  </div>
+  <div class="ph-body">
+    <div class="step-row">
+      <svg class="sr-ico"><use href="#ico-arrow"/></svg>
+      Svarið öllum 18 spurningunum saman
+    </div>
+    <div class="step-row">
+      <svg class="sr-ico orange"><use href="#ico-lock"/></svg>
+      Takið <strong style="color:var(--orange)">fyrsta bókstafinn</strong> úr hverju svari
+    </div>
+    <div class="step-row">
+      <svg class="sr-ico"><use href="#ico-arrow"/></svg>
+      Setjið alla 18 bókstafina saman — þetta er kóðinn ykkar!
+    </div>
+    <div class="code-slots">
+      <div class="slot">_</div><div class="slot">_</div><div class="slot">_</div><div class="slot">_</div><div class="slot">_</div><div class="slot">_</div>
+      <div class="slot">_</div><div class="slot">_</div><div class="slot">_</div><div class="slot">_</div><div class="slot">_</div><div class="slot">_</div>
+      <div class="slot">_</div><div class="slot">_</div><div class="slot">_</div><div class="slot">_</div><div class="slot">_</div><div class="slot">_</div>
+    </div>
+    <div class="note">
+      <svg><use href="#ico-lock"/></svg>
+      Eitt rangt svar breytir öllum kóðanum — farið yfir svörin tvöfalt!
+    </div>
+  </div>
+</div>
+
+<!-- ÞRAUT 3 -->
+<div class="phase">
+  <div class="ph green">
+    <div class="ph-num">4</div>
+    <div class="ph-ico"><svg><use href="#ico-trophy"/></svg></div>
+    <div class="ph-title">LOKAÞRAUT — NOTIÐ KÓÐANN</div>
+  </div>
+  <div class="ph-body">
+    <div class="step-row">
+      <svg class="sr-ico"><use href="#ico-lock"/></svg>
+      Notið 18 stafa kóðann til að leysa lokaþrautina
+    </div>
+    <div class="step-row">
+      <svg class="sr-ico"><use href="#ico-users"/></svg>
+      Vinnið saman — allir hugarnir eru nauðsynlegir!
+    </div>
+    <div class="info">
+      <svg><use href="#ico-eye"/></svg>
+      Lesið lokaþrautina þrisvar áður en þið byrjið — lausnin er oft falin í spurningunni!
+    </div>
+  </div>
+</div>
+
+<!-- LOKIÐ -->
+<div class="final">
+  <h2><svg><use href="#ico-trophy"/></svg> TIL HAMINGJU! 🎉</h2>
+  <div class="final-steps">
+    <div class="fs">
+      <svg><use href="#ico-photo"/></svg>
+      <div class="fs-text"><strong>Hópselfie</strong><br>Takið mynd af öllum í hópnum saman</div>
+    </div>
+    <div class="fs">
+      <svg><use href="#ico-envelope"/></svg>
+      <div class="fs-text"><strong>Sendið</strong> selfie og lausn á<br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7811151a0a191e1f381f15191114561b1715">[email&#160;protected]</a></div>
+    </div>
+    <div class="fs">
+      <svg><use href="#ico-document"/></svg>
+      <div class="fs-text">Skrifið lausnina á <strong>bleikt blað</strong></div>
+    </div>
+    <div class="fs">
+      <svg><use href="#ico-book"/></svg>
+      <div class="fs-text">Farið með blaðið á <strong>bókasafn skóla

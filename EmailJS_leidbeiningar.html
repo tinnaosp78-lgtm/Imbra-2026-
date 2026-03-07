@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EmailJS Leiðbeiningar — IMBRA 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #0033A0;
+    --orange: #FF6B00;
+    --green: #059669;
+    --lightgreen: #d1fae5;
+    --gray: #f4f4f8;
+    --border: #dde3f0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--gray); color: #111; }
+
+  header {
+    background: var(--blue);
+    padding: 28px 48px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  header h1 { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: white; letter-spacing: 2px; }
+  header span { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: var(--orange); }
+
+  main { max-width: 780px; margin: 40px auto; padding: 0 24px 60px; }
+
+  .intro {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 24px 28px;
+    margin-bottom: 28px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #444;
+  }
+
+  .step {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  .step-header {
+    background: var(--blue);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .step-num {
+    background: var(--orange);
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .step-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: white;
+    letter-spacing: 1.5px;
+  }
+
+  .step-body {
+    padding: 22px 28px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #333;
+  }
+
+  .step-body p { margin-bottom: 12px; }
+  .step-body p:last-child { margin-bottom: 0; }
+
+  a { color: var(--orange); font-weight: 700; }
+
+  .code-block {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 14px 0;
+    overflow-x: auto;
+  }
+
+  .code-block .key { color: #f38ba8; }
+  .code-block .val { color: #a6e3a1; }
+  .code-block .comment { color: #6c7086; }
+
+  .highlight {
+    background: #fff3e8;
+    border-left: 4px solid var(--orange);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+
+  .success-box {
+    background: var(--lightgreen);
+    border: 2px solid var(--green);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-top: 28px;
+    text-align: center;
+  }
+  .success-box h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: #065f46;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .success-box p { color: #047857; font-size: 14px; }
+
+  .template-box {
+    background: #f0f4ff;
+    border: 1px solid var(--blue);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin: 14px 0;
+    font-size: 14px;
+    white-space: pre-line;
+    line-height: 1.8;
+  }
+
+  strong { color: var(--blue); }
+  .orange { color: var(--orange); font-weight: 700; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>EMAILJS <span>LEIÐBEININGAR</span></h1>
+  </div>
+</header>
+
+<main>
+
+  <div class="intro">
+    EmailJS gerir þér kleift að senda tölvupóst beint úr HTML skránni <strong>án bakenda</strong>. Nemandinn fær sjálfkrafa staðfestingarpóst um leið og hann smellir "Skrá sig". Uppsetningin tekur um <strong>5–10 mínútur</strong> og er ókeypis upp að 200 póstur á mánuði.
+  </div>
+
+  <!-- SKREF 1 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">1</div>
+      <div class="step-title">STOFNAÐU REIKNING Á EMAILJS.COM</div>
+    </div>
+    <div class="step-body">
+      <p>Farðu á <a href="https://www.emailjs.com" target="_blank">emailjs.com</a> og smelltu á <strong>"Sign Up Free"</strong>.</p>
+      <p>Skráðu þig með Gmail eða Outlook reikningnum þínum.</p>
+    </div>
+  </div>
+
+  <!-- SKREF 2 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">2</div>
+      <div class="step-title">TENGDU TÖLVUPÓSTÞJÓNUSTU (EMAIL SERVICE)</div>
+    </div>
+    <div class="step-body">
+      <p>Í valmyndinni vinstra megin smelltu á <strong>"Email Services"</strong> → <strong>"Add New Service"</strong>.</p>
+      <p>Veldu <strong>Gmail</strong> eða <strong>Outlook</strong> — hvort sem þú notar.</p>
+      <p>Gefðu þjónustunni nafn, t.d. <span class="orange">IMBRA2026</span>, og smelltu <strong>"Connect Account"</strong> til að veita EmailJS aðgang.</p>
+      <div class="highlight">
+        📋 <strong>Afritaðu Service ID</strong> — þú þarft hann seinna. Lítur svona út: <code>service_abc123</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKREF 3 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">3</div>
+      <div class="step-title">BÚÐU TIL SNIÐMÁT (EMAIL TEMPLATE)</div>
+    </div>
+    <div class="step-body">
+      <p>Smelltu á <strong>"Email Templates"</strong> → <strong>"Create New Template"</strong>.</p>
+      <p>Fylltu inn svona:</p>
+
+      <p><strong>Subject (efnislína):</strong></p>
+      <div class="code-block">IMBRA 2026 — Skráning staðfest, {{to_name}}!</div>
+
+      <p><strong>To Email:</strong></p>
+      <div class="code-block">{{to_email}}</div>
+
+
+      <p><strong>Content (meginmál) — veldu <span class="orange">HTML editor</span> í EmailJS og límdu inn:</strong></p>
+      <div class="highlight">💡 Í EmailJS Template editor — smelltu á <strong>"&lt;/&gt; Code editor"</strong> flipann og límdu inn HTML kóðann hér að neðan.</div>
+
+      <div class="code-block" style="font-size:12px;line-height:1.6;">
+&lt;!-- IMBRA 2026 Email Template --&gt;<br>
+&lt;div style="font-family:'Segoe UI',Arial,sans-serif;max-width:600px;margin:0 auto;background:#f4f4f8;"&gt;<br>
+<br>
+&nbsp;&nbsp;&lt;!-- HEADER --&gt;<br>
+&nbsp;&nbsp;&lt;div style="background:#0033A0;padding:32px 40px;"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div style="font-family:Arial Black,sans-serif;font-size:48px;font-weight:900;color:#fff;letter-spacing:3px;line-height:1;"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMBRA &lt;span style="color:#FF6B00"&gt;2026&lt;/span&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div style="color:rgba(255,255,255,0.7);font-size:13px;margin-top:6px;letter-spacing:2px;"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SAMAN SKÖPUM VIÐ STEMMINGU<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;/div&gt;<br>
+<br>
+&nbsp;&nbsp;&lt;!-- BODY --&gt;<br>
+&nbsp;&nbsp;&lt;div style="background:#fff;padding:36px 40px;"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;p style="font-size:22px;font-weight:700;color:#0033A0;margin:0 0 8px;"&gt;Hæ {{to_name}}! 🎉&lt;/p&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;p style="color:#555;font-size:15px;line-height:1.6;margin:0 0 28px;"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Skráning þín fyrir IMBRA 2026 er móttekin. Hér eru valkostir þínir:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- MIÐVIKUDAGUR --&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div style="margin-bottom:16px;"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div style="background:#0033A0;color:#fff;padding:10px 16px;border-radius:8px 8px 0 0;font-size:12px;font-weight:700;letter-spacing:2px;"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📅 MIÐVIKUDAGUR<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div style="border:2px solid #0033A0;border-top:none;border-radius:0 0 8px 8px;padding:14px 16px;"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div style="font-size:12px;color:#888;font-weight:700;letter-spacing:1px;margin-bottom:4px;"&gt;13:00–15:00 — HREYFING&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div style="font-size:16px;font-weight:700;color:#111;"&gt;→ {{mid_val}}&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- FIMMTUDAGUR --&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div style="margin-bottom:28px;"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div style="background:#0033A0;color:#fff;padding:10px 16px;border-radius:8px 8px 0 0;font-size:12px;font-weight:700;letter-spacing:2px;"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📅 FIMMTUDAGUR<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div style="border:2px solid #0033A0;border-top:none;border-radius:0 0 8px 8px;overflow:hidden;"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div style="padding:12px 16px;border-bottom:1px solid #eee;"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div style="font-size:12px;color:#888;font-weight:700;letter-spacing:1px;margin-bottom:3px;"&gt;9:00–10:00 — 1. VAL&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div style="font-size:16px;font-weight:700;color:#111;"&gt;→ {{fim1_val}}&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div style="padding:12px 16px;"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div style="font-size:12px;color:#888;font-weight:700;letter-spacing:1px;margin-bottom:3px;"&gt;10:15–11:15 — 2. VAL&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div style="font-size:16px;font-weight:700;color:#111;"&gt;→ {{fim2_val}}&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;p style="color:#555;font-size:14px;line-height:1.6;border-top:2px solid #f0f0f0;padding-top:20px;margin:0;"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gangi þér vel og við hlökkum til að sjá þig á IMBRA 2026! 🙌&lt;br&gt;&lt;br&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Og mundu — við endum þessa góðu skemmtun &lt;strong style="color:#FF6B00;"&gt;saman í Imbrunni&lt;/strong&gt; á fimmtudaginn! 🏊<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;<br>
+&nbsp;&nbsp;&lt;/div&gt;<br>
+<br>
+&nbsp;&nbsp;&lt;!-- FOOTER --&gt;<br>
+&nbsp;&nbsp;&lt;div style="background:#001f6b;padding:16px 40px;text-align:center;"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div style="color:rgba(255,255,255,0.6);font-size:12px;letter-spacing:1px;"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fjölbrautaskólinn í Garðabæ &nbsp;·&nbsp; IMBRA 2026<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;/div&gt;<br>
+<br>
+&lt;/div&gt;
+      </div>
+
+      <div class="highlight">
+        📋 <strong>Afritaðu Template ID</strong> eftir að þú vistar. Lítur svona út: <code>template_xyz789</code>
+      </div>
+
+      <p>Smelltu <strong>"Save"</strong>.</p>
+    </div>
+  </div>
+
+  <!-- SKREF 4 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">4</div>
+      <div class="step-title">SÆKTU PUBLIC KEY</div>
+    </div>
+    <div class="step-body">
+      <p>Smelltu á nafnið þitt efst til hægri → <strong>"Account"</strong> → flipinn <strong>"API Keys"</strong>.</p>
+      <div class="highlight">
+        📋 <strong>Afritaðu Public Key</strong> — lítur svona út: <code>aBcDeFgHiJkLmNoP</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKREF 5 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">5</div>
+      <div class="step-title">SETTU LYKLANA INN Í SKRÁNINGARKERFIÐ</div>
+    </div>
+    <div class="step-body">
+      <p>Opnaðu <strong>imbra2026_skraning.html</strong> í textaritli (t.d. Notepad, VS Code).</p>
+      <p>Finndu þessar þrjár línur efst í JavaScript hlutanum og skiptu um <span class="orange">YOUR_...</span> gildin:</p>
+
+      <div class="code-block">
+<span class="key">const</span> EMAILJS_PUBLIC_KEY  = <span class="val">'aBcDeFgHiJkLmNoP'</span>;   <span class="comment">// þitt Public Key</span>
+<span class="key">const</span> EMAILJS_SERVICE_ID  = <span class="val">'service_abc123'</span>;      <span class="comment">// þitt Service ID</span>
+<span class="key">const</span> EMAILJS_TEMPLATE_ID = <span class="val">'template_xyz789'</span>;     <span class="comment">// þitt Template ID</span>
+      </div>
+
+      <p>Vistaðu skrána og hladdu upp á netið.</p>
+    </div>
+  </div>
+
+  <!-- SKREF 6 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">6</div>
+      <div class="step-title">PRÓFAÐU KERFIÐ</div>
+    </div>
+    <div class="step-body">
+      <p>Opnaðu skráningarkerfið, skráðu þig með þínu eigin netfangi og smelltu <strong>"Staðfesta skráningu"</strong>.</p>
+      <p>Þú ættir að fá póst á nokkrum sekúndum. Ef póstinn kemur ekki — athugaðu að lyklarnir séu rétt afritaðir (engir auðir bilstafir).</p>
+      <div class="highlight">
+        💡 <strong>Ábending:</strong> EmailJS gefur þér 200 ókeypis póstur á mánuði. Fyrir 200–300 nemendur þarftu annaðhvort að uppfæra í greiddan reikning (ca. $15/mán) eða nota tvo reikninga.
+      </div>
+    </div>
+  </div>
+
+  <div class="success-box">
+    <h3>✅ ALLT TILBÚIÐ!</h3>
+    <p>Þegar lyklarnir eru settir inn mun kerfið senda sjálfkrafa staðfestingarpóst til hvers nemanda um leið og hann skráir sig.</p>
+  </div>
+
+</main>
+</body>
+</html>
